@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baby Shower 🍼</title>
+
+  <!-- Google Fonts: Playfair Display (elegante) + Nunito (suave y amigable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================================================
+       VARIABLES Y RESET
+    =================================================== */
+    :root {
+      --rosa:       #f7c5d0;
+      --rosa-prof:  #e88fa3;
+      --lila:       #d4b8e0;
+      --celeste:    #b8d8e8;
+      --menta:      #b8e0d2;
+      --crema:      #fdf6ee;
+      --beige:      #f5e6d8;
+      --dorado:     #c9a96e;
+      --texto:      #5a3e4b;
+      --texto-suave:#8a6a75;
+      --blanco:     #ffffff;
+      --sombra:     rgba(200,140,160,0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ===================================================
+       FONDO CON DEGRADADO + PUNTOS SUTILES
+    =================================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 10%, #fce4ec88 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 90%, #e8d5f088 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, #e0f4f088 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Patrón de puntos decorativos */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, #e88fa322 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ===================================================
+       CONTENEDOR PRINCIPAL
+    =================================================== */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    /* ===================================================
+       TARJETA BASE
+    =================================================== */
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 40px 36px;
+      margin-bottom: 22px;
+      box-shadow:
+        0 8px 32px var(--sombra),
+        0 1px 0 rgba(255,255,255,0.9) inset;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px var(--sombra);
+    }
+
+    /* ===================================================
+       ENCABEZADO HERO
+    =================================================== */
+    .hero {
+      text-align: center;
+      padding: 52px 36px 44px;
+      background: linear-gradient(145deg, rgba(247,197,208,.55), rgba(212,184,224,.45), rgba(184,216,232,.35));
+    }
+
+    /* Decoración SVG de arcoíris en hero */
+    .rainbow-top {
+      display: block;
+      margin: 0 auto 24px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Título principal */
+    .hero-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rosa-prof);
+      margin-bottom: 10px;
+      animation: fadeDown .8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 8vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--texto);
+      margin-bottom: 8px;
+      animation: fadeDown .9s .1s ease both;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rosa-prof);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      font-style: italic;
+      color: var(--dorado);
+      margin-bottom: 18px;
+      animation: fadeDown 1s .2s ease both;
+    }
+
+    .hero-welcome {
+      font-size: 1rem;
+      color: var(--texto-suave);
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.7;
+      animation: fadeDown 1s .3s ease both;
+    }
+
+    /* Osito SVG */
+    .bear-wrap {
+      margin: 28px auto 0;
+      display: flex;
+      justify-content: center;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    /* ===================================================
+       SECCIÓN FECHA Y HORA
+    =================================================== */
+    .datetime-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      text-align: center;
+    }
+
+    .datetime-divider {
+      background: linear-gradient(to bottom, transparent, var(--rosa), transparent);
+      width: 1.5px;
+    }
+
+    .dt-item {
+      padding: 8px 20px;
+    }
+
+    .dt-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 6px;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .dt-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rosa-prof);
+      margin-bottom: 4px;
+    }
+
+    .dt-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--texto);
+    }
+
+    .dt-sub {
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+    }
+
+    /* ===================================================
+       SECCIÓN LUGAR
+    =================================================== */
+    .place-card {
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 10px;
+    }
+
+    .section-title span {
+      display: block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--rosa-prof);
+      margin-bottom: 4px;
+    }
+
+    .address-text {
+      font-size: 1rem;
+      color: var(--texto-suave);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    /* ===================================================
+       BOTONES
+    =================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      border: none;
+      outline: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+    }
+
+    .btn:active { transform: scale(.97); }
+
+    .btn-maps {
+      background: linear-gradient(135deg, #4a8fe8, #6ab0f5);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(74,143,232,.35);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(37,211,102,.35);
+    }
+
+    .btn-music {
+      background: linear-gradient(135deg, var(--rosa-prof), var(--lila));
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(232,143,163,.35);
+      padding: 12px 24px;
+      font-size: 0.88rem;
+    }
+
+    .btn-center { display: flex; justify-content: center; }
+
+    /* ===================================================
+       FRASE TIERNA
+    =================================================== */
+    .quote-card {
+      background: linear-gradient(135deg, rgba(247,197,208,.6), rgba(212,184,224,.5));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: '❝';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 5rem;
+      color: rgba(232,143,163,.2);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--texto);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rosa-prof);
+    }
+
+    /* ===================================================
+       CONFIRMAR ASISTENCIA
+    =================================================== */
+    .rsvp-card {
+      text-align: center;
+    }
+
+    .rsvp-subtitle {
+      font-size: 0.95rem;
+      color: var(--texto-suave);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* ===================================================
+       REPRODUCTOR DE MÚSICA
+    =================================================== */
+    .music-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 28px;
+    }
+
+    .music-note-icon {
+      font-size: 2.2rem;
+      animation: spin 4s linear infinite;
+      flex-shrink: 0;
+    }
+
+    .music-info {
+      flex: 1;
+    }
+
+    .music-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 2px;
+    }
+
+    .music-subtitle {
+      font-size: 0.78rem;
+      color: var(--texto-suave);
+    }
+
+    /* Barra de progreso */
+    .progress-wrap {
+      margin-top: 10px;
+      height: 4px;
+      background: rgba(0,0,0,.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rosa-prof), var(--lila));
+      border-radius: 99px;
+      transition: width .5s linear;
+    }
+
+    /* ===================================================
+       NUBES FLOTANTES (decoración)
+    =================================================== */
+    .clouds-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      opacity: 0.25;
+      animation: driftCloud linear infinite;
+    }
+
+    /* ===================================================
+       ESTRELLAS ANIMADAS
+    =================================================== */
+    .stars-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f7c5d0, #d4b8e0);
+      animation: twinkle ease-in-out infinite;
+    }
+
+    /* ===================================================
+       PIE DE PÁGINA
+    =================================================== */
+    footer {
+      text-align: center;
+      padding: 30px 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-text {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+      line-height: 1.7;
+    }
+
+    .footer-hearts {
+      font-size: 1.2rem;
+      display: block;
+      margin-top: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ===================================================
+       ANIMACIONES
+    =================================================== */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.12); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: .15; transform: scale(1); }
+      50%       { opacity: .55; transform: scale(1.4); }
+    }
+
+    @keyframes driftCloud {
+      from { transform: translateX(-220px); }
+      to   { transform: translateX(calc(100vw + 220px)); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Animación de entrada al hacer scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================================================
+       RESPONSIVE
+    =================================================== */
+    @media (max-width: 480px) {
+      .card { padding: 30px 22px; }
+      .music-card { flex-direction: column; text-align: center; }
+      .datetime-grid { grid-template-columns: 1fr; }
+      .datetime-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NUBES DECORATIVAS (inyectadas por JS) ===== -->
+  <div class="clouds-wrap" id="cloudsWrap" aria-hidden="true"></div>
+
+  <!-- ===== ESTRELLAS DECORATIVAS (inyectadas por JS) ===== -->
+  <div class="stars-wrap" id="starsWrap" aria-hidden="true"></div>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <div class="container">
+
+    <!-- 🍼 HÉROE PRINCIPAL -->
+    <div class="card hero">
+
+      <!-- Arcoíris SVG animado -->
+      <svg class="rainbow-top" width="160" height="80" viewBox="0 0 160 80" fill="none"
+           xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 78 Q80 -10 150 78" stroke="#f7c5d0" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M22 78 Q80 4 138 78"  stroke="#fde68a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M34 78 Q80 16 126 78" stroke="#b8e0d2" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M46 78 Q80 26 114 78" stroke="#b8d8e8" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M58 78 Q80 36 102 78" stroke="#d4b8e0" stroke-width="9" fill="none" stroke-linecap="round"/>
+      </svg>
+
+      <p class="hero-label">✨ Te invitamos a nuestro ✨</p>
+      <h1 class="hero-title"><em>Baby Shower</em></h1>
+      <p class="hero-name">de Sofía Martínez</p>
+
+      <p class="hero-welcome">
+        Con mucho amor y emoción, celebramos la llegada de nuestra pequeña
+        estrella. Tu presencia hará este momento aún más especial. 🌸
+      </p>
+
+      <!-- Osito SVG tierno -->
+      <div class="bear-wrap" aria-hidden="true">
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Orejas -->
+          <circle cx="22" cy="22" r="12" fill="#d4a88a"/>
+          <circle cx="68" cy="22" r="12" fill="#d4a88a"/>
+          <circle cx="22" cy="22" r="7"  fill="#e8c4a8"/>
+          <circle cx="68" cy="22" r="7"  fill="#e8c4a8"/>
+          <!-- Cabeza -->
+          <circle cx="45" cy="46" r="32" fill="#d4a88a"/>
+          <!-- Hocico -->
+          <ellipse cx="45" cy="55" rx="14" ry="10" fill="#e8c4a8"/>
+          <!-- Ojos -->
+          <circle cx="34" cy="40" r="4.5" fill="#5a3e4b"/>
+          <circle cx="56" cy="40" r="4.5" fill="#5a3e4b"/>
+          <!-- Brillo ojos -->
+          <circle cx="36" cy="38.5" r="1.5" fill="white"/>
+          <circle cx="58" cy="38.5" r="1.5" fill="white"/>
+          <!-- Nariz -->
+          <ellipse cx="45" cy="51" rx="4" ry="2.5" fill="#c07a6a"/>
+          <!-- Boca -->
+          <path d="M40 55 Q45 60 50 55" stroke="#c07a6a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <!-- Moño rosa -->
+          <path d="M38 26 Q45 22 52 26 Q45 30 38 26Z" fill="#f7c5d0"/>
+          <path d="M38 26 Q45 30 52 26 Q45 22 38 26Z" fill="#e88fa3" opacity=".6"/>
+          <circle cx="45" cy="26" r="3" fill="#e88fa3"/>
+        </svg>
+      </div>
+
+    </div><!-- /hero -->
+
+
+    <!-- 📅 FECHA Y HORA -->
+    <div class="card reveal">
+      <div class="datetime-grid">
+        <div class="dt-item">
+          <span class="dt-icon">📅</span>
+          <p class="dt-label">Fecha</p>
+          <p class="dt-value">Sábado 19</p>
+          <p class="dt-sub">de julio de 2025</p>
+        </div>
+        <div class="datetime-divider" aria-hidden="true"></div>
+        <div class="dt-item">
+          <span class="dt-icon">🕒</span>
+          <p class="dt-label">Hora</p>
+          <p class="dt-value">4:00 PM</p>
+          <p class="dt-sub">¡No llegues tarde! 😊</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 📍 LUGAR -->
+    <div class="card place-card reveal">
+      <h2 class="section-title">
+        <span>📍 Lugar</span>
+        Salón Los Girasoles
+      </h2>
+      <p class="address-text">
+        Calle Primavera #142, Col. Jardines del Sur<br/>
+        Querétaro, Qro. México, C.P. 76000
+      </p>
+      <div class="btn-center">
+        <!-- 🔑 Cambia las coordenadas en la URL de Google Maps según tu dirección -->
+        <a class="btn btn-maps"
+           href="https://www.google.com/maps/search/?api=1&query=Queretaro+Mexico"
+           target="_blank" rel="noopener noreferrer">
+          🗺️ Abrir en Google Maps
+        </a>
+      </div>
+    </div>
+
+
+    <!-- 💬 FRASE TIERNA -->
+    <div class="card quote-card reveal">
+      <p class="quote-text">
+        "Un bebé es algo que decides llevar en tu corazón para siempre,
+        mucho antes de que llegue al mundo."
+      </p>
+      <p class="quote-author">— Con amor, la familia Martínez 💕</p>
+    </div>
+
+
+    <!-- 🎵 REPRODUCTOR DE MÚSICA -->
+    <div class="card music-card reveal">
+      <span class="music-note-icon" aria-hidden="true">🎵</span>
+      <div class="music-info">
+        <p class="music-title">Música del Baby Shower</p>
+        <p class="music-subtitle">Dale play y disfruta 🎀</p>
+        <div class="progress-wrap">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+      <!-- Audio local: pon musica.mp3 en la misma carpeta -->
+      <audio id="audioPlayer" preload="none">
+        <source src="musica.mp3" type="audio/mpeg"/>
+      </audio>
+      <button class="btn btn-music" id="playBtn" aria-label="Reproducir música">
+        ▶ Play
+      </button>
+    </div>
+
+
+    <!-- ✅ CONFIRMAR ASISTENCIA -->
+    <div class="card rsvp-card reveal">
+      <h2 class="section-title">
+        <span>🎀 Confirmación</span>
+        ¡Confirma tu asistencia!
+      </h2>
+      <p class="rsvp-subtitle">
+        Por favor confírmanos si podrás acompañarnos.<br/>
+        Tu presencia es el mejor regalo. 🌷
+      </p>
+      <div class="btn-center">
+        <!-- 🔑 Cambia el número de teléfono en la URL (incluye código de país sin +) -->
+        <a class="btn btn-whatsapp"
+           href="https://wa.me/521XXXXXXXXXX?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20de%20Sofía%20🍼🎀"
+           target="_blank" rel="noopener noreferrer">
+          💬 Confirmar por WhatsApp
+        </a>
+      </div>
+    </div>
+
+
+  </div><!-- /container -->
+
+
+  <!-- 🌸 PIE DE PÁGINA -->
+  <footer>
+    <p class="footer-text">
+      Con todo el amor del mundo, los esperamos 🌸<br/>
+      <em>Sofía + Familia Martínez</em>
+    </p>
+    <span class="footer-hearts" aria-hidden="true">🎀 ✨ 🍼 ✨ 🎀</span>
+  </footer>
+
+
+  <!-- ===================================================
+       JAVASCRIPT
+  =================================================== -->
+  <script>
+    /* ---- Generar nubes flotantes ---- */
+    (function createClouds() {
+      const wrap = document.getElementById('cloudsWrap');
+      const cloudPaths = [
+        // path simplificado de nube
+        'M30,60 Q10,60 10,45 Q10,30 25,30 Q28,18 42,18 Q52,10 65,18 Q78,10 88,20 Q100,20 100,35 Q100,50 85,50 Q80,60 60,60Z'
+      ];
+      for (let i = 0; i < 5; i++) {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        const size = 120 + Math.random() * 160;
+        svg.setAttribute('width', size);
+        svg.setAttribute('height', size * 0.55);
+        svg.setAttribute('viewBox', '0 0 110 65');
+        svg.style.top  = (Math.random() * 80) + '%';
+        svg.style.left = '-220px';
+        const duration = 30 + Math.random() * 40;
+        const delay    = Math.random() * -40;
+        svg.style.animationDuration = duration + 's';
+        svg.style.animationDelay    = delay + 's';
+        svg.classList.add('cloud');
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d', cloudPaths[0]);
+        path.setAttribute('fill', 'white');
+        svg.appendChild(path);
+        wrap.appendChild(svg);
+      }
+    })();
+
+    /* ---- Generar estrellas ---- */
+    (function createStars() {
+      const wrap = document.getElementById('starsWrap');
+      for (let i = 0; i < 30; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = 3 + Math.random() * 7;
+        star.style.cssText = `
+          width:${size}px; height:${size}px;
+          top:${Math.random()*100}%;
+          left:${Math.random()*100}%;
+          animation-duration:${2 + Math.random()*4}s;
+          animation-delay:${Math.random()*4}s;
+        `;
+        wrap.appendChild(star);
+      }
+    })();
+
+    /* ---- Reveal al hacer scroll ---- */
+    (function initReveal() {
+      const items = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(el => observer.observe(el));
+    })();
+
+    /* ---- Reproductor de música ---- */
+    (function initPlayer() {
+      const audio   = document.getElementById('audioPlayer');
+      const btn     = document.getElementById('playBtn');
+      const progBar = document.getElementById('progress-bar');
+      let playing   = false;
+
+      btn.addEventListener('click', () => {
+        if (!playing) {
+          audio.play().catch(() => {
+            // El navegador puede bloquear autoplay
+            btn.textContent = '⚠️ Activa el audio';
+          });
+          playing = true;
+          btn.textContent = '⏸ Pause';
+        } else {
+          audio.pause();
+          playing = false;
+          btn.textContent = '▶ Play';
+        }
+      });
+
+      // Actualizar barra de progreso
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          progBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        playing = false;
+        btn.textContent = '▶ Play';
+        progBar.style.width = '0%';
+      });
+    })();
+  </script>
+
+</body>
+</html>
